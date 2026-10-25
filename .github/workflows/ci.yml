@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  versions:
+    name: Version consistency
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/check_version.py
+
+  unit-tests:
+    name: Unit tests (native)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - run: pip install platformio
+      - run: pio test -e native
+
+  examples:
+    name: Build examples (ESP32)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        example:
+          - examples/Basic/SimpleClick/SimpleClick.ino
+          - examples/Basic/DoubleClick/DoubleClick.ino
+          - examples/Basic/HoldDetection/HoldDetection.ino
+          - examples/Advanced/VolumeControl/VolumeControl.ino
+          - examples/Advanced/ComboKeys/ComboKeys.ino
+          - examples/Advanced/FullSystem/FullSystem.ino
+          - examples/Advanced/IdleSleep/IdleSleep.ino
+          - examples/Advanced/ParallelCodeInput/ParallelCodeInput.ino
+          - examples/Advanced/Keypad4x4/Keypad4x4.ino
+          - examples/Professional/AVControlSystem/AVControlSystem.ino
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - run: pip install platformio
+      - run: pio ci --lib="." --board=esp32dev "${{ matrix.example }}"
+
+  example-ir:
+    name: Build IRRemoteTV (needs IRremote)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - run: pip install platformio
+      - run: >
+          pio ci --lib="." --board=esp32dev
+          --project-option="lib_deps=z3t0/IRremote"
+          examples/Professional/IRRemoteTV/IRRemoteTV.ino
+
+  basic-avr:
+    name: Build basic examples (Arduino Uno)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - run: pip install platformio
+      - run: pio ci --lib="." --board=uno examples/Basic/SimpleClick/SimpleClick.ino

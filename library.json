@@ -1,0 +1,100 @@
+{
+  "name": "SmartKey",
+  "version": "2.2.0",
+  "description": "Key and input event management for embedded systems: debounce, click / double / triple click, hold events, combos, sequences, value controllers and hardware scanners. Header-only, no dynamic allocation.",
+  "keywords": "keypad, button, key, debounce, click, double-click, hold, combo, matrix, ir-remote, input, arduino, esp32",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nourbakhsh-Rad/SmartKey.git"
+  },
+  "authors": [
+    {
+      "name": "Sh. Nourbakhsh Rad",
+      "email": "Sh.Nourbakhsh@gmail.com",
+      "maintainer": true
+    }
+  ],
+  "license": "MIT",
+  "frameworks": "*",
+  "platforms": "*",
+  "headers": "SmartKey.h",
+  "examples": [
+    {
+      "name": "SimpleClick",
+      "base": "examples/Basic/SimpleClick",
+      "files": [
+        "SimpleClick.ino"
+      ]
+    },
+    {
+      "name": "DoubleClick",
+      "base": "examples/Basic/DoubleClick",
+      "files": [
+        "DoubleClick.ino"
+      ]
+    },
+    {
+      "name": "HoldDetection",
+      "base": "examples/Basic/HoldDetection",
+      "files": [
+        "HoldDetection.ino"
+      ]
+    },
+    {
+      "name": "VolumeControl",
+      "base": "examples/Advanced/VolumeControl",
+      "files": [
+        "VolumeControl.ino"
+      ]
+    },
+    {
+      "name": "ComboKeys",
+      "base": "examples/Advanced/ComboKeys",
+      "files": [
+        "ComboKeys.ino"
+      ]
+    },
+    {
+      "name": "FullSystem",
+      "base": "examples/Advanced/FullSystem",
+      "files": [
+        "FullSystem.ino"
+      ]
+    },
+    {
+      "name": "IdleSleep",
+      "base": "examples/Advanced/IdleSleep",
+      "files": [
+        "IdleSleep.ino"
+      ]
+    },
+    {
+      "name": "ParallelCodeInput",
+      "base": "examples/Advanced/ParallelCodeInput",
+      "files": [
+        "ParallelCodeInput.ino"
+      ]
+    },
+    {
+      "name": "Keypad4x4",
+      "base": "examples/Advanced/Keypad4x4",
+      "files": [
+        "Keypad4x4.ino"
+      ]
+    },
+    {
+      "name": "AVControlSystem",
+      "base": "examples/Professional/AVControlSystem",
+      "files": [
+        "AVControlSystem.ino"
+      ]
+    },
+    {
+      "name": "IRRemoteTV",
+      "base": "examples/Professional/IRRemoteTV",
+      "files": [
+        "IRRemoteTV.ino"
+      ]
+    }
+  ]
+}

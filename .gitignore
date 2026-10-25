@@ -1,0 +1,24 @@
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Build output
+build/
+*.o
+*.elf
+*.bin
+*.hex
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Release archives
+*.zip
